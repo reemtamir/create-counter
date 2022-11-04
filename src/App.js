@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import InputsList from './components/InputsList';
+import Counter from './components/Counter';
+import Header from './components/Header';
+import { useState } from 'react';
+import CreateNewCounter from './components/CreateNewCounter';
 
 function App() {
+  const [minValue, setMinValue] = useState(Number.MIN_SAFE_INTEGER);
+  const [maxValue, setMaxValue] = useState(Number.MAX_SAFE_INTEGER);
+  const [initialValue, setInitialValue] = useState(0);
+  const [stepsValue, setStepsValue] = useState(1);
+  let configurations = { minValue, maxValue, initialValue, stepsValue };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App m-auto text-center">
+      <Header str={'Create counter'} />
+      <Counter minValue={-2} maxValue={5} />
+      <Header str={'Add counter'} />
+      <InputsList
+        setMinValue={setMinValue}
+        setMaxValue={setMaxValue}
+        setInitialValue={setInitialValue}
+        setStepsValue={setStepsValue}
+      />
+
+      <CreateNewCounter configurations={configurations} />
     </div>
   );
 }
