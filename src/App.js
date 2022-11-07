@@ -5,12 +5,14 @@ import Header from './components/Header';
 import { useState } from 'react';
 import CreateNewCounter from './components/CreateNewCounter';
 
+
 function App() {
   const [minValue, setMinValue] = useState(Number.MIN_SAFE_INTEGER);
   const [maxValue, setMaxValue] = useState(Number.MAX_SAFE_INTEGER);
   const [initialValue, setInitialValue] = useState(0);
   const [stepsValue, setStepsValue] = useState(1);
   let configurations = { minValue, maxValue, initialValue, stepsValue };
+  let users;
   return (
     <div className="App m-auto text-center">
       <Header str={'Create counter'} />
@@ -22,8 +24,9 @@ function App() {
         setInitialValue={setInitialValue}
         setStepsValue={setStepsValue}
       />
-
       <CreateNewCounter configurations={configurations} />
+
+     
     </div>
   );
 }
