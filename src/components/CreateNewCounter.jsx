@@ -10,6 +10,8 @@ function CreateNewCounter({ configurations }) {
         <Counter
           minValue={Number(configurations.minValue)}
           maxValue={Number(configurations.maxValue)}
+          initialValue={Number(configurations.initialValue)}
+          stepsValue={Number(configurations.stepsValue)}
           key={counterList.length}
         />
       )

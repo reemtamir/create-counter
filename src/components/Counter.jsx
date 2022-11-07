@@ -7,11 +7,18 @@ function Counter({
   stepsValue = 1,
 }) {
   const [counter, setCounter] = useState(initialValue);
+  const isNotAtMin = counter - stepsValue >= minValue;
+  const isNotAtMax = counter + stepsValue <= maxValue;
+  console.log(minValue, maxValue, initialValue, stepsValue);
   const add = () => {
-    setCounter((counter) => counter + stepsValue);
+    if (isNotAtMax) {
+      setCounter((counter) => counter + stepsValue);
+    }
   };
   const subtract = () => {
-    setCounter((counter) => counter - stepsValue);
+    if (isNotAtMin) {
+      setCounter((counter) => counter - stepsValue);
+    }
   };
 
   function setColor(counter) {
@@ -25,10 +32,10 @@ function Counter({
         From: {minValue}, To: {maxValue}
       </p>
       <p style={{ color: setColor(counter) }}>{counter}</p>
-      <button disabled={counter === maxValue} onClick={add}>
+      <button disabled={!isNotAtMax} onClick={add}>
         +
       </button>
-      <button disabled={counter === minValue} onClick={subtract}>
+      <button disabled={!isNotAtMin} onClick={subtract}>
         -
       </button>
     </>
